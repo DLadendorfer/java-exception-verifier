@@ -2,8 +2,8 @@ plugins {
     id("java")
 }
 
-group = "com.aero.servicely"
-version = "1.0-SNAPSHOT"
+group = "com.aero.testing"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
