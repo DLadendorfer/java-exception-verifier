@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.aero.testing.exceptionverify.IMethodSourceProvider;
 import com.aero.testing.exceptionverify.api.ExceptionAssertion;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,9 +15,6 @@ import org.junit.jupiter.params.provider.MethodSource;
  * @author Daniel Ladendorfer
  */
 class ExceptionPresenceDelegateTest implements IMethodSourceProvider {
-
-  @BeforeEach
-  void beforeEach() {}
 
   @DisplayName(
       """

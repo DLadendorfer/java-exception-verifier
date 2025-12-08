@@ -16,16 +16,16 @@ import org.jspecify.annotations.Nullable;
  * exception checks such as:
  *
  * <ul>
- *   <li>asserting that <em>any</em> exception was thrown
- *   <li>asserting that <em>no</em> exception was thrown
+ *   <li>asserting that any exception was thrown
+ *   <li>asserting that no exception was thrown
  * </ul>
  *
  * <p>The delegate is annotated with {@link org.jspecify.annotations.NullMarked}, meaning all
  * parameters and return types are non-null by default unless explicitly marked with {@link
  * org.jspecify.annotations.Nullable}.
  *
- * <p>This class uses {@link AbstractFailureDelegate} to trigger failures in a consistent way when
- * assertions do not match expectations.
+ * <p>Assertion failures are delegated to {@link AbstractFailureDelegate} to ensure consistent error
+ * signaling across the library.
  *
  * @author Daniel Ladendorfer
  */

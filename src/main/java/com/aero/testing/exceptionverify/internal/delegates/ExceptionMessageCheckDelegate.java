@@ -15,7 +15,7 @@ public class ExceptionMessageCheckDelegate extends AbstractFailureDelegate {
   private static final String EXPECTED_EQUAL_MESSAGE = "Expected message '%s' but got '%s'";
   private final ExceptionAssertion exceptionAssertion;
 
-  public ExceptionAssertion withMessage(@Nullable String expected, Throwable throwable) {
+  public ExceptionAssertion messageEquals(@Nullable String expected, Throwable throwable) {
     String msg = throwable.getMessage();
 
     if (msg == null && expected == null) {

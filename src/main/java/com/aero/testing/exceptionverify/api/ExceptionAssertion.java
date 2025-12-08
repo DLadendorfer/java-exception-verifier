@@ -87,7 +87,7 @@ public final class ExceptionAssertion {
   public ExceptionAssertion throwsExactly(Class<? extends Throwable> expected) {
     Objects.requireNonNull(expected, EXPECTED_TYPE_MUST_NOT_BE_NULL);
     presenceChecker.throwsAny(thrown);
-    return typeChecker.throwsExactly(expected, Optional.ofNullable(thrown).orElseThrow());
+    return typeChecker.throwsExactly(expected, thrown);
   }
 
   /**
@@ -100,7 +100,72 @@ public final class ExceptionAssertion {
   public ExceptionAssertion throwsSubtypeOf(Class<? extends Throwable> expected) {
     Objects.requireNonNull(expected, EXPECTED_TYPE_MUST_NOT_BE_NULL);
     presenceChecker.throwsAny(thrown);
-    return typeChecker.throwsSubtypeOf(expected, Optional.ofNullable(thrown).orElseThrow());
+    return typeChecker.throwsSubtypeOf(expected, thrown);
+  }
+
+  /**
+   * Asserts that the thrown exception wraps (as its direct cause) a throwable of the given type.
+   *
+   * <p>The cause must be present and must be a subtype of the expected type.
+   *
+   * @param expected the expected type or supertype of the direct cause; must not be {@code null}
+   * @return this {@code ExceptionAssertion} for fluent chaining
+   * @throws AssertionError if the cause is missing or not a subtype of the expected type
+   */
+  public ExceptionAssertion wrapsSubtypeOf(Class<? extends Throwable> expected) {
+    Objects.requireNonNull(expected, EXPECTED_TYPE_MUST_NOT_BE_NULL);
+    presenceChecker.throwsAny(thrown);
+    return typeChecker.wrapsSubtypeOf(expected, Optional.ofNullable(thrown).orElseThrow());
+  }
+
+  /**
+   * Asserts that somewhere in the cause-chain of the thrown exception there exists a throwable
+   * whose type is a subtype of the specified type.
+   *
+   * <p>The entire cause-chain is searched recursively: {@code getCause(), getCause().getCause(),
+   * ...}
+   *
+   * @param expected the type or supertype expected in the cause-chain; must not be {@code null}
+   * @return this {@code ExceptionAssertion} for fluent chaining
+   * @throws AssertionError if no matching cause exists in the entire cause-chain
+   */
+  public ExceptionAssertion wrapsSubtypeOfRecursive(Class<? extends Throwable> expected) {
+    Objects.requireNonNull(expected, EXPECTED_TYPE_MUST_NOT_BE_NULL);
+    presenceChecker.throwsAny(thrown);
+    return typeChecker.wrapsSubtypeOfRecursive(expected, Optional.ofNullable(thrown).orElseThrow());
+  }
+
+  /**
+   * Asserts that the thrown exception wraps (as its direct cause) a throwable exactly of the given
+   * type.
+   *
+   * <p>Only the immediate cause is inspected. Subtypes do not match.
+   *
+   * @param expected the exact type of the direct cause; must not be {@code null}
+   * @return this {@code ExceptionAssertion} for fluent chaining
+   * @throws AssertionError if the direct cause is missing or not exactly the expected type
+   */
+  public ExceptionAssertion wrapsExactly(Class<? extends Throwable> expected) {
+    Objects.requireNonNull(expected, EXPECTED_TYPE_MUST_NOT_BE_NULL);
+    presenceChecker.throwsAny(thrown);
+    return typeChecker.wrapsExactly(expected, Optional.ofNullable(thrown).orElseThrow());
+  }
+
+  /**
+   * Asserts that somewhere in the cause-chain of the thrown exception there exists a throwable
+   * whose type matches exactly the specified type.
+   *
+   * <p>This search is recursive and stops once a matching cause is discovered.
+   *
+   * @param expected the exact throwable type expected somewhere in the cause-chain; must not be
+   *     {@code null}
+   * @return this {@code ExceptionAssertion} for fluent chaining
+   * @throws AssertionError if no exactly matching cause exists in the chain
+   */
+  public ExceptionAssertion wrapsExactlyRecursive(Class<? extends Throwable> expected) {
+    Objects.requireNonNull(expected, EXPECTED_TYPE_MUST_NOT_BE_NULL);
+    presenceChecker.throwsAny(thrown);
+    return typeChecker.wrapsExactlyRecursive(expected, Optional.ofNullable(thrown).orElseThrow());
   }
 
   // --- message checks ---
@@ -112,9 +177,9 @@ public final class ExceptionAssertion {
    * @return this {@code ExceptionAssertion} for fluent chaining
    * @throws AssertionError if the message does not match
    */
-  public ExceptionAssertion withMessage(@Nullable String expected) {
+  public ExceptionAssertion messageEquals(@Nullable String expected) {
     presenceChecker.throwsAny(thrown);
-    return messageChecker.withMessage(expected, Optional.ofNullable(thrown).orElseThrow());
+    return messageChecker.messageEquals(expected, Optional.ofNullable(thrown).orElseThrow());
   }
 
   /**

@@ -15,7 +15,7 @@ ExceptionVerifier.assertThat(() -> service.process(null))
 -   Supports:
     -   presence checks (`throwsAny`, `doesNotThrow`, etc.)
     -   exact type and subtype matching (`throwsExactly`,`throwsSubtypeOf`, etc.)
-    -   message equality, substring checks, regex checks (`messageContains`, `messageMatches`, etc.)
+    -   message equality, substring checks, regex checks (`messageEquals`, ****`messageContains`, `messageMatches`, etc.)
     -   cause type and cause-message checks
 -   No further dependencies required at test runtime
 -   Fully null-safe (JSpecify + `@NullMarked`)
@@ -24,7 +24,7 @@ ExceptionVerifier.assertThat(() -> service.process(null))
 
 ### Gradle (Kotlin DSL)
 
-``` kotlin
+``` kotlin****
 dependencies {
     testImplementation("com.aero.testing:exception-verifier:<version>")
 }
@@ -47,7 +47,7 @@ dependencies {
 // assert that division by zero is in fact, not possible
 ExceptionVerifier.assertThat(() -> calculator.divide(10, 0))
     .throwsExactly(ArithmeticException.class)
-    .withMessage("/ by zero");
+    .messageEquals("/ by zero");
 ```
 
 ``` java

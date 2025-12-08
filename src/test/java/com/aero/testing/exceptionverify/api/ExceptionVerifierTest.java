@@ -6,6 +6,13 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests complex chaining of {@link ExceptionVerifier}. This acts as sort of integration test suite.
+ * The smaller units of the internal classes should be tested by separate unit tests.
+ * It should also act as a collection of examples.
+ *
+ * @author Daniel Ladendorfer
+ */
 class ExceptionVerifierTest {
 
   @DisplayName(
@@ -60,7 +67,7 @@ class ExceptionVerifierTest {
 
     ExceptionVerifier.assertThat(throwingRunnable)
         .throwsExactly(ArithmeticException.class)
-        .withMessage("/ by zero");
+        .messageEquals("/ by zero");
   }
 
   @DisplayName("Throws exactly is failing if no exception is thrown")
