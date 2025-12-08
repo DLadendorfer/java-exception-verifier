@@ -4,8 +4,6 @@
 // -------------------------------------------------------------------------------
 package com.aero.testing.exceptionverify.internal.delegates;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import com.aero.testing.exceptionverify.api.ExceptionAssertion;
 import lombok.AllArgsConstructor;
 import org.jspecify.annotations.NullMarked;
@@ -13,7 +11,7 @@ import org.jspecify.annotations.Nullable;
 
 @NullMarked
 @AllArgsConstructor
-public class ExceptionMessageCheckDelegate {
+public class ExceptionMessageCheckDelegate extends AbstractFailureDelegate {
   private static final String EXPECTED_EQUAL_MESSAGE = "Expected message '%s' but got '%s'";
   private final ExceptionAssertion exceptionAssertion;
 

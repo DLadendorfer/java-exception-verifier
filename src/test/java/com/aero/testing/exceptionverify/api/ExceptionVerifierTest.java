@@ -62,4 +62,12 @@ class ExceptionVerifierTest {
         .throwsExactly(ArithmeticException.class)
         .withMessage("/ by zero");
   }
+
+  @DisplayName("Throws exactly is failing if no exception is thrown")
+  @Test
+  void throwsExactly_NoException() {
+    assertThrows(
+        AssertionError.class,
+        () -> ExceptionVerifier.assertThat(() -> {}).throwsExactly(ArithmeticException.class));
+  }
 }

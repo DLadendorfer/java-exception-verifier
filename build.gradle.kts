@@ -11,7 +11,6 @@ repositories {
 
 dependencies {
     compileOnly(libs.lombok)
-    compileOnly(libs.bundles.junit5)
     compileOnly(libs.jspecify)
 
     annotationProcessor(libs.lombok)

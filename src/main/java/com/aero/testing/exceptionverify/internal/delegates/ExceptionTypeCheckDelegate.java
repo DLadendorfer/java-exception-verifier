@@ -4,15 +4,13 @@
 // -------------------------------------------------------------------------------
 package com.aero.testing.exceptionverify.internal.delegates;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import com.aero.testing.exceptionverify.api.ExceptionAssertion;
 import lombok.AllArgsConstructor;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 @AllArgsConstructor
-public class ExceptionTypeCheckDelegate {
+public class ExceptionTypeCheckDelegate extends AbstractFailureDelegate {
 
   private static final String EXPECTED_TYPE_MISMATCH = "Expected exception of type %s but got %s";
   private static final String EXPECTED_SUBTYPE_MISMATCH = "Expected a subtype of %s but got %s";

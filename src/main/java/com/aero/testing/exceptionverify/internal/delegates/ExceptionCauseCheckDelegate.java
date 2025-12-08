@@ -4,8 +4,6 @@
 // -------------------------------------------------------------------------------
 package com.aero.testing.exceptionverify.internal.delegates;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import com.aero.testing.exceptionverify.api.ExceptionAssertion;
 import lombok.AllArgsConstructor;
 import org.jspecify.annotations.NullMarked;
@@ -13,7 +11,7 @@ import org.jspecify.annotations.Nullable;
 
 @NullMarked
 @AllArgsConstructor
-public class ExceptionCauseCheckDelegate {
+public class ExceptionCauseCheckDelegate extends AbstractFailureDelegate {
   private static final String EXPECTED_CAUSE_IS_NULL =
       "Expected cause of type %s but cause was null.";
   private static final String EXPECTED_CAUSE_MISMATCH = "Expected cause %s but got %s";

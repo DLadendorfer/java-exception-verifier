@@ -12,13 +12,12 @@ ExceptionVerifier.assertThat(() -> service.process(null))
 ## ✨ Features
 
 -   Fluent API for exception checking
--   JUnit 5 friendly
 -   Supports:
     -   presence checks (`throwsAny`, `doesNotThrow`, etc.)
     -   exact type and subtype matching (`throwsExactly`,`throwsSubtypeOf`, etc.)
     -   message equality, substring checks, regex checks (`messageContains`, `messageMatches`, etc.)
     -   cause type and cause-message checks
--   Only JUnit dependencies required at test runtime
+-   No further dependencies required at test runtime
 -   Fully null-safe (JSpecify + `@NullMarked`)
 
 ## 📦 Installation
@@ -86,7 +85,6 @@ delegates checks to specialized internal components such as:
 ## 🛠 Requirements
 
 -   Java 21+
--   JUnit 5
 
 ## 📄 License
 
